@@ -1,11 +1,3 @@
-class Todo {
-    constructor(text,completed=false){
-        this.id=Utils.getOrder();
-        this.text=text;
-        this.completed=completed;
-    }
-}
-
 
 class TodoList{
     add(text){
