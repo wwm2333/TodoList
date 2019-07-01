@@ -9,13 +9,13 @@ class AppForm extends React.Component{
     //回车修改input的值，父组件中新增todo
     handleAddTodo(e){
         const {handleAddTodo}=this.props;
-        console.log(e);
-        if(e.keyCode==13){
+        if(e.keyCode===13){
             handleAddTodo({
                 id:this.generateId(),
                 text:e.target.value,
-                complated:false
+                completed:false
             });
+         e.target.value="";   
         }
     }
     generateId() {
@@ -37,7 +37,7 @@ class AppForm extends React.Component{
         return(
         <div className="header">
             <h1>todos</h1>
-            <input className="new-todo" id="new-todo" placeholder="What needs to be done?" onKeyDown={this.handleAddTodo}  autofocus/>
+            <input className="new-todo" id="new-todo" placeholder="What needs to be done?" onKeyDown={this.handleAddTodo}  autoFocus/>
         </div> 
         )   
     }
