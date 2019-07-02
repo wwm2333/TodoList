@@ -6,6 +6,7 @@ class AppList extends React.Component{
      
         this.handleCheckedAll=this.handleCheckedAll.bind(this);
         this.handleCheckedSingle=this.handleCheckedSingle.bind(this);
+        this.handledeleteTodo=this.handledeleteTodo.bind(this);
     }
     handleCheckedAll(e){
         let {handleCheckedAll}=this.props;
@@ -15,6 +16,9 @@ class AppList extends React.Component{
         let {handleCheckedSingle}=this.props;
         handleCheckedSingle(e.currentTarget.getAttribute("data-id"),e.currentTarget.checked);
     }
+    handledeleteTodo(e){
+
+    }
     render(){
         let {data}=this.props;
         let html=data.map((todo)=>{
@@ -23,7 +27,7 @@ class AppList extends React.Component{
                 <div className="view">
                  <input className="toggle" type="checkbox" data-id={todo.id} checked={todo.completed} onClick={this.handleCheckedSingle}/>
                     <label>{todo.text}</label>
-                    <button className="destroy"></button>
+                    <button className="destroy" data-id={todo.id} onClick={this.handledeleteTodo}></button>
                 </div>
             <input className="edit" defaultValue={todo.text}/>
             </li> 
