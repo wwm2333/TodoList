@@ -25,17 +25,20 @@ class AppList extends React.Component{
         e.currentTarget.parentNode.parentNode.setAttribute('class','editing');
     }
     handleEditTodo(e){
-        let {handleEditTodo}=this.props;
-        handleEditTodo(e.currentTarget.getAttribute("data-id"),e.currentTarget.value);
+        if(e.keyCode===13){
+            let {handleEditTodo}=this.props;
+            handleEditTodo(e.currentTarget.getAttribute("data-id"),e.currentTarget.value);
+            e.currentTarget.parentNode.setAttribute('class','');
+        }
     }
     render(){
-        let {data}=this.props;
-        let html=data.map((todo)=>{
+        let {tempData}=this.props;
+        let html=tempData.map((todo)=>{
             return( 
             <li className={todo.completed?'completed':''}  key={todo.id.toString()}>
                 <div className="view">
                  <input className="toggle" type="checkbox" data-id={todo.id} checked={todo.completed} onClick={this.handleCheckedSingle}/>
-                    <label dblClick={this.handleDblClick}>{todo.text}</label>
+                    <label onDoubleClick={this.handleDblClick}>{todo.text}</label>
                     <button className="destroy" data-id={todo.id} onClick={this.handledeleteTodo}></button>
                 </div>
             <input className="edit" data-id={todo.id} onKeyDown={this.handleEditTodo} defaultValue={todo.text}/>
